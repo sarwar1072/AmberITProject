@@ -1,0 +1,43 @@
+﻿@model List<SaleDto>
+
+@{
+    ViewBag.Title = "Sales List";
+}
+<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+</style>
+<div class="container mt-5">
+    <h2 class="mb-4 text-primary">Sales List</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No sales found.</div>
+    }
+    else
+    {
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Customer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sale in Model)
+                {
+                    <tr>
+                        <td>@sale.Id</td>
+                        <td>@sale.ProductName</td>
+                        <td class="text-success fw-bold">@sale.TotalAmount.ToString("C")</td>
+                        <td>@sale.CustomerName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

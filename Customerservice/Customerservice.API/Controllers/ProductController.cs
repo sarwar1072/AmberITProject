@@ -15,7 +15,7 @@ namespace Customerservice.API.Controllers
         {
                 _productServices = productServices;
         }
-
+       
 
         [HttpPost("CreatePrduct")]
         public IActionResult CreatePrduct([FromBody] ProductModel model)

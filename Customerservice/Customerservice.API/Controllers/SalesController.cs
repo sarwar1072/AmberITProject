@@ -37,6 +37,19 @@ namespace Customerservice.API.Controllers
 
             return Ok("Sales created successfully");
         }
+        [HttpGet("ListOf-AllSells")]
+        public IActionResult GetAllSell()
+        {
+            var data=_salesServices.GetAllSales().Select(s => new SaleDto
+            {
+                Id = s.Id,
+                ProductName = s.Product.Name,
+                TotalAmount = s.TotalPrice,
+                CustomerName = s.Customer.Name
+            }).ToList(); 
+            return Ok(data);    
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAll(
         [FromQuery] int customerId,

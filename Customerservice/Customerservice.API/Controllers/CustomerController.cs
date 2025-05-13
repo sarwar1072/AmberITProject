@@ -2,6 +2,7 @@
 using Customerservice.API.Models.ProductFold;
 using Customerservice.Framework.Entites;
 using Customerservice.Framework.Services;
+using CustomerService.Framework.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +13,12 @@ namespace Customerservice.API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerServices _services;
-        public CustomerController(ICustomerServices services)
+        private readonly IProductServices _productServices;
+
+        public CustomerController(ICustomerServices services, IProductServices productServices)
         {
             _services = services;
+            _productServices = productServices;
         }
 
         [HttpPost("Create-Customer")]
@@ -92,8 +96,18 @@ namespace Customerservice.API.Controllers
             }
             return Ok(model);
         }
+        [HttpGet("Get-allProduct")]
+        public IActionResult Get()
+        {
+            var data = _productServices.GetAllProducts();
 
-        [HttpGet("{id}")]
+            if (data == null)
+                return NotFound();
+            return Ok(data);
+        }
+
+
+        [HttpGet("Total-purchase/{id}")]
 
         public IActionResult TotalPurchaseByCustomer(int id)
         {

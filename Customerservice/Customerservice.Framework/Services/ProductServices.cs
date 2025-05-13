@@ -39,6 +39,10 @@ namespace CustomerService.Framework.Services
         {
             return _unitOfWork.ProductRepository.GetById(id);
         }
+        public IList<Product> GetAllProducts()
+        {
+            return _unitOfWork.ProductRepository.GetAll();
+        }
         public void Removeproduct(int id)
         {
             if (id == 0)

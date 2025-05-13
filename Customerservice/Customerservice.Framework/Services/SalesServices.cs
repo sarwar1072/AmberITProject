@@ -36,6 +36,11 @@ namespace Customerservice.Framework.Services
             _projectUnitOfWork.SalesRepogitory.Add(sales);
             _projectUnitOfWork.Save();
         }
+
+        public IList<Sales> GetAllSales()
+        {
+            return _projectUnitOfWork.SalesRepogitory.Get(null, null, x => x.Include(x => x.Product).Include(y => y.Customer), false);
+        }
         public IList<Sales> SalesFilter(DateTime dateTime,int CustomerId,int ProductId)
         {
             var filterData=_projectUnitOfWork.SalesRepogitory.Get(x=>x.Salesdate==dateTime || x.CustomerId==CustomerId || x.ProductId==ProductId

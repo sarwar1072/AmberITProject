@@ -11,6 +11,7 @@ namespace Customerservice.Framework.Services
     {
         void CreateSales(Sales sales);
         IList<Sales> SalesFilter(DateTime dateTime, int CustomerId, int ProductId);
+        IList<Sales> GetAllSales();
 
     }
 }

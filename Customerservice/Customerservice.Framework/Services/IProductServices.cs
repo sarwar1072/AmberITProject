@@ -12,6 +12,7 @@ namespace CustomerService.Framework.Services
         void AddProduct(Product product);
         Product GetById(int id);
         void Removeproduct(int id);
+        IList<Product> GetAllProducts();
 
         void UpdateProduct(Product product);
 
